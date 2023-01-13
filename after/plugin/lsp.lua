@@ -29,7 +29,7 @@ lsp.on_attach(function(_, bufnr)
 
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 end)
