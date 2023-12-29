@@ -47,13 +47,47 @@ local function update_mode_colors()
 end
 
 local function git_branch()
-	local branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+    local branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
 
-	if branch ~= "" then
+    if branch ~= "" then
         return string.format("%%#StatusLineGitBranch#  %s ", branch)
-	else
-		return ""
-	end
+    else
+        return ""
+    end
+end
+
+local function lsp()
+    local count = {}
+    local levels = {
+        errors = "Error",
+        warnings = "Warn",
+        info = "Info",
+        hints = "Hint",
+    }
+
+    for k, level in pairs(levels) do
+        count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
+    end
+
+    local errors = ""
+    local warnings = ""
+    local hints = ""
+    local info = ""
+
+    if count["errors"] ~= 0 then
+        errors = " %#LspDiagnosticsSignError# " .. count["errors"]
+    end
+    if count["warnings"] ~= 0 then
+        warnings = " %#LspDiagnosticsSignWarning# " .. count["warnings"]
+    end
+    if count["hints"] ~= 0 then
+        hints = " %#LspDiagnosticsSignHint#󰁤 " .. count["hints"]
+    end
+    if count["info"] ~= 0 then
+        info = " %#LspDiagnosticsSignInformation# " .. count["info"]
+    end
+
+    return errors .. warnings .. hints .. info .. " %#Normal#"
 end
 
 local function filename()
@@ -63,9 +97,9 @@ end
 local function filetype()
     local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
     local icon = require('nvim-web-devicons').get_icon(file_name, file_ext, { default = true })
-    local filetype = vim.bo.filetype
+    local file_type = vim.bo.filetype
 
-    if filetype == '' then return '' end
+    if file_type == '' then return '' end
     return "%#Filetype#" .. string.format(' %s %s ', icon, filetype):lower()
 end
 
@@ -90,6 +124,7 @@ Statusline.active = function()
         "%=",
         "%#StatusLineExtra#",
         filetype(),
+        lsp(),
         update_mode_colors(),
         lineinfo(),
     }
@@ -113,4 +148,3 @@ vim.api.nvim_exec([[
         au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
     augroup END
 ]], false)
-
