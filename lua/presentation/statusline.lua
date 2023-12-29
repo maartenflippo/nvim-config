@@ -100,7 +100,7 @@ local function filetype()
     local file_type = vim.bo.filetype
 
     if file_type == '' then return '' end
-    return "%#Filetype#" .. string.format(' %s %s ', icon, filetype):lower()
+    return "%#Filetype#" .. string.format(' %s %s ', icon, file_type):lower()
 end
 
 local function lineinfo()
