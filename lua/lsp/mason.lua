@@ -4,7 +4,7 @@ local lsp_config = require("mason-lspconfig")
 local cmp_capabilities = require("lsp.cmp")
 
 lsp_config.setup {
-    ensure_installed = { "lua_ls" },
+    ensure_installed = { "lua_ls", "rust_analyzer" },
 }
 
 lsp_config.setup_handlers {
