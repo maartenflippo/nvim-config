@@ -12,3 +12,4 @@ vim.keymap.set("n", "<C-S-l>", "<C-W>l");
 -- Buffer navigation
 vim.keymap.set("n", "<C-h>", vim.cmd.bnext)
 vim.keymap.set("n", "<C-l>", vim.cmd.bprevious)
+vim.keymap.set("n", "<C-q>", "<Cmd>bd<CR>")
