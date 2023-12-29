@@ -5,7 +5,7 @@ require("tokyonight").setup({
     --- function will be called with a Highlights and ColorScheme table
     ---@param highlights Highlights
     ---@param colors ColorScheme
-    on_highlights = function(highlights, colors) 
+    on_highlights = function(highlights, colors)
         highlights["StatusLineNormalMode"] = {
             fg = colors.terminal_black,
             bg = colors.blue
@@ -20,7 +20,25 @@ require("tokyonight").setup({
         }
         highlights["StatusLineCmdLineMode"] = {
             fg = colors.fg,
-            bg = colors.none
+        }
+        highlights["StatusLineLineInfo"] = {
+            fg = colors.comment,
+            bg = colors.bg_statusline
+        }
+        highlights["LspDiagnosticsSignError"] = {
+            fg = colors.red,
+        }
+        highlights["LspDiagnosticsSignWarning"] = {
+            fg = colors.yellow,
+        }
+        highlights["LspDiagnosticsSignHint"] = {
+            fg = colors.blue,
+        }
+        highlights["LspDiagnosticsSignInformation"] = {
+            fg = colors.purple,
+        }
+        highlights["LspDiagnosticsSign"] = {
+            bg = colors.bg_statusline
         }
     end,
 })
