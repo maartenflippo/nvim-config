@@ -19,6 +19,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
-        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
     end,
 })
