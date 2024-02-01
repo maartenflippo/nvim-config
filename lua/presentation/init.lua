@@ -11,6 +11,6 @@ require('lualine').setup {
         lualine_c = { 'buffers' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
-        lualine_z = { 'location' }
+        lualine_z = { 'location', require('lsp-progress').progress }
     },
 }
