@@ -10,7 +10,22 @@ lsp_config.setup {
 lsp_config.setup_handlers {
     function(server_name)
         require("lspconfig")[server_name].setup {
-            capabilities = cmp_capabilities
+            capabilities = cmp_capabilities,
         }
-    end
+    end,
+
+    ["rust_analyzer"] = function()
+        require("lspconfig").rust_analyzer.setup {
+            capabilities = cmp_capabilities,
+
+            settings = {
+                ["rust-analyzer"] = {
+                    cargo = {
+                        features = "all",
+                        allFeatures = true,
+                    },
+                }
+            },
+        }
+    end,
 }
