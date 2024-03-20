@@ -20,6 +20,9 @@ lsp_config.setup_handlers {
 
             settings = {
                 ["rust-analyzer"] = {
+                    rustfmt = {
+                        extraArgs = "+nightly"
+                    },
                     cargo = {
                         features = "all",
                         allFeatures = true,
