@@ -7,6 +7,12 @@ vim.filetype.add({
     },
 })
 
+vim.filetype.add({
+    extension = {
+        coq = "coq",
+    },
+})
+
 parser_config.minizinc = {
     install_info = {
         url = "https://github.com/shackle-rs/shackle",
