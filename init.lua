@@ -1,4 +1,3 @@
-require("core")
-require("languages")
-require("presentation")
-require("lsp")
+require("config.options")
+require("config.lazy")
+require("config.keymaps")
